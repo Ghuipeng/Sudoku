@@ -17,7 +17,7 @@ int main(int argc, char** argv) {
 			if (produce_num >= 1 && produce_num <= 1000000) {
 				int produce_num = atoi(argv[2]);
 				ProucedByPermutationTrans(produce_num);
-				cout << produce_num << "¸öÊý¶ÀÖÕ¾ÖÒÑÉú³É" << endl;
+				cout << produce_num << "ä¸ªæ•°ç‹¬ç»ˆå±€å·²ç”Ÿæˆ" << endl;
 			}
 			else {
 				cout << "input param after '-c' error!" << endl;
@@ -38,17 +38,17 @@ int main(int argc, char** argv) {
 					list<int**> sudo_list;
 					GetAnswer(sudo, size, &sudo_list);
 
-					auto it_1 = sudo_list.begin();
+					list<int**>::iterator it_1 = sudo_list.begin();
 					while (it_1 != sudo_list.end()) {
 						output_result(*it_1);
 						it_1++;
 					}
-					DeleteMemory(sudo_list);
+
 					i++;
 					if (i == 6)
 						break;
 				}
-				cout << "gameÇó½âÍê±Ï" << endl;
+				cout << "gameæ±‚è§£å®Œæ¯•" << endl;
 				DeleteMemory(sudo);
 			}
 			else {
@@ -60,8 +60,8 @@ int main(int argc, char** argv) {
 			if (argc == 3) {
 				int num = atoi(argv[2]);
 				if (num >= 1 && num <= 10000) {
-					ProucedByPermutationTrans(num);		//Éú³Énum¸öÖÕ¾Ö£¨±£Ö¤×ã¹»¼´¿É£©
-					Generate(num, false, 0, 20, 55);	//´ÓÉú³ÉµÄÖÕ¾ÖÖÐµÃµ½num¸öÊý¶Àgame£¬´æÈëgame.txt
+					ProucedByPermutationTrans(num);		//ç”Ÿæˆnumä¸ªç»ˆå±€ï¼ˆä¿è¯è¶³å¤Ÿå³å¯ï¼‰
+					Generate(num, false, 0, 20, 55);	//ä»Žç”Ÿæˆçš„ç»ˆå±€ä¸­å¾—åˆ°numä¸ªæ•°ç‹¬gameï¼Œå­˜å…¥game.txt
 				}
 				else {
 					cout << "input param after '-n' error!" << endl;
@@ -74,11 +74,14 @@ int main(int argc, char** argv) {
 				if (!strcmp(argv[3], "-u"))
 					oneSolution = true;
 				else
+				{
 					cout << "param argv[3] error!";
+					return 0;
+				}
 
 				if (num >= 1 && num <= 10000) {
-					ProucedByPermutationTrans(10*num);		//Éú³É10*num¸öÖÕ¾Ö£¨±£Ö¤×ã¹»¼´¿É£©
-					Generate(num, oneSolution, 0, 20, 55);	//´ÓÉú³ÉµÄÖÕ¾ÖÖÐµÃµ½num¸öÊý¶Àgame£¬´æÈëgame.txt
+					ProucedByPermutationTrans(10*num);		//ç”Ÿæˆ10*numä¸ªç»ˆå±€ï¼ˆä¿è¯è¶³å¤Ÿå³å¯ï¼‰
+					Generate(num, oneSolution, 0, 20, 55);	//ä»Žç”Ÿæˆçš„ç»ˆå±€ä¸­å¾—åˆ°numä¸ªæ•°ç‹¬gameï¼Œå­˜å…¥game.txt
 				}
 				else {
 					cout << "input param after '-n' error!" << endl;
@@ -91,8 +94,8 @@ int main(int argc, char** argv) {
 					int diff = atoi(argv[4]);
 
 					if (num >= 1 && num <= 10000 && diff >= 1 && diff <= 3) {
-						ProucedByPermutationTrans(num);		//Éú³Énum¸öÖÕ¾Ö
-						Generate(num, false, diff, 20, 55);	//´ÓÉú³ÉµÄÖÕ¾ÖÖÐµÃµ½num¸öÊý¶Àgame£¬´æÈëgame.txt
+						ProucedByPermutationTrans(num);		//ç”Ÿæˆnumä¸ªç»ˆå±€
+						Generate(num, false, diff, 20, 55);	//ä»Žç”Ÿæˆçš„ç»ˆå±€ä¸­å¾—åˆ°numä¸ªæ•°ç‹¬gameï¼Œå­˜å…¥game.txt
 					}
 					else {
 						cout << "params error!" << endl;
@@ -102,25 +105,26 @@ int main(int argc, char** argv) {
 				else {
 					int num = atoi(argv[2]);
 					int low = 20, high = 55;
-					std::string range = argv[4]; // ´ÓÃüÁîÐÐ²ÎÊýÖÐ»ñÈ¡ "20~55" ×Ö·û´®
+					std::string range = argv[4]; // ä»Žå‘½ä»¤è¡Œå‚æ•°ä¸­èŽ·å– "20~55" å­—ç¬¦ä¸²
 					size_t tildeIndex = range.find("~");
 
 					if (tildeIndex != std::string::npos) {
-						std::string strA = range.substr(0, tildeIndex); // ÌáÈ¡ "~" Ç°ÃæµÄÊý×Ö×Ö·û´®
-						std::string strB = range.substr(tildeIndex + 1); // ÌáÈ¡ "~" ºóÃæµÄÊý×Ö×Ö·û´®
+						std::string strA = range.substr(0, tildeIndex); // æå– "~" å‰é¢çš„æ•°å­—å­—ç¬¦ä¸²
+						std::string strB = range.substr(tildeIndex + 1); // æå– "~" åŽé¢çš„æ•°å­—å­—ç¬¦ä¸²
 
-						low = std::stoi(strA); // ½«×Ö·û´®×ª»»ÎªÕûÊý
-						high = std::stoi(strB); // ½«×Ö·û´®×ª»»ÎªÕûÊý
+						low = std::stoi(strA); // å°†å­—ç¬¦ä¸²è½¬æ¢ä¸ºæ•´æ•°
+						high = std::stoi(strB); // å°†å­—ç¬¦ä¸²è½¬æ¢ä¸ºæ•´æ•°
 
 						cout << "low: " << low << "    " << "high: " << high << endl;
 					}
 					else {
 						std::cout << "argv[4] has no '~' symbol!" << std::endl;
+						return 0;
 					}
 
 					if (num >= 1 && num <= 10000 && low >= 20 && high <= 55) {
-						ProucedByPermutationTrans(num);		//Éú³Énum¸öÖÕ¾Ö
-						Generate(num, false, 0, low, high);	//´ÓÉú³ÉµÄÖÕ¾ÖÖÐµÃµ½num¸öÊý¶Àgame£¬´æÈëgame.txt
+						ProucedByPermutationTrans(num);		//ç”Ÿæˆnumä¸ªç»ˆå±€
+						Generate(num, false, 0, low, high);	//ä»Žç”Ÿæˆçš„ç»ˆå±€ä¸­å¾—åˆ°numä¸ªæ•°ç‹¬gameï¼Œå­˜å…¥game.txt
 					}
 					else {
 						cout << "params error!" << endl;
