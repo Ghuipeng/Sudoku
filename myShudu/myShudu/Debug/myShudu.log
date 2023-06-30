@@ -1,0 +1,14 @@
+﻿  GenerateSudokuFromFinal.cpp
+D:\myshudu\myShudu\myShudu\GenerateSudokuFromFinal.cpp(73,12): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+D:\myshudu\myShudu\myShudu\GenerateSudokuFromFinal.cpp(132,18): warning C4305: “初始化”: 从“double”到“float”截断
+D:\myshudu\myShudu\myShudu\GenerateSudokuFromFinal.cpp(134,13): warning C4244: “return”: 从“float”转换到“int”，可能丢失数据
+  GetAnswer.cpp
+D:\myshudu\myShudu\myShudu\GetAnswer.cpp(52,25): warning C4018: “<=”: 有符号/无符号不匹配
+D:\myshudu\myShudu\myShudu\GetAnswer.cpp(69,13): warning C4018: “<=”: 有符号/无符号不匹配
+  main.cpp
+  ProduceFinal.cpp
+D:\myshudu\myShudu\myShudu\ProduceFinal.cpp(68,11): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+  Read_Write_Flie.cpp
+  Util.cpp
+  正在生成代码...
+  myShudu.vcxproj -> D:\myshudu\myShudu\Debug\myShudu.exe
