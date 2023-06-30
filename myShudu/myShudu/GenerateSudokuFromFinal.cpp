@@ -11,7 +11,7 @@
 #include <iostream>
 using namespace std;
 
-void setNull(int** sudo, int* place, int place_length) {    //ÓÃÓÚÍÚ¿ÕÖÕ¾Ö£¬µÃµ½Êı¶À
+void setNull(int** sudo, int* place, int place_length) {    //ç”¨äºæŒ–ç©ºç»ˆå±€ï¼Œå¾—åˆ°æ•°ç‹¬
 	for (int postion = 0; postion < place_length; postion++) {
 		sudo[place[postion] / length][place[postion] % length] = 0;
 	}
@@ -19,7 +19,7 @@ void setNull(int** sudo, int* place, int place_length) {    //ÓÃÓÚÍÚ¿ÕÖÕ¾Ö£¬µÃµ½
 
 void Generate(int num, bool oneSolution, int diffcult, int low, int high) {
 	int num_now = 0;
-	int size = 2;   //ÖÁ¶àÇó2¸ö½â
+	int size = 2;   //è‡³å¤šæ±‚2ä¸ªè§£
 	int size_per_sudo = 1;
 	list<int**> valid_sudo_list;
 	extern char* Final_path;
@@ -28,25 +28,25 @@ void Generate(int num, bool oneSolution, int diffcult, int low, int high) {
 	int** onesudo = RequestMemory(0);
 	int** copy_sudo = RequestMemory(0);
 	while (num > num_now) {
-		if (read_from_text(onesudo, read))   //Ã¿´Î¶ÁÈ¡Ò»¸öÖÕ¾Öµ½onesudo
+		if (read_from_text(onesudo, read))   //æ¯æ¬¡è¯»å–ä¸€ä¸ªç»ˆå±€åˆ°onesudo
 		{
-			for (int i = 0; i < size_per_sudo; i++)    //Ã¿¸öÖÕ¾Ö¿ÉÒÔ»ñµÃ¼¸´ÎÉú³ÉÊı¶ÀÌâÄ¿µÄ»ú»á
+			for (int i = 0; i < size_per_sudo; i++)    //æ¯ä¸ªç»ˆå±€å¯ä»¥è·å¾—å‡ æ¬¡ç”Ÿæˆæ•°ç‹¬é¢˜ç›®çš„æœºä¼š
 			{
 				int place[high_limit] = { 0 };
-				copy_sudo = RequestMemory(onesudo);   //ÒòÎªÒ»¸öÖÕ¾ÖonesudoÓĞ¶à´Î»ú»á£¬ĞèÒª±£Áô£¬ÎÒÃÇÊ¹ÓÃcopy_sudo
+				copy_sudo = RequestMemory(onesudo);   //å› ä¸ºä¸€ä¸ªç»ˆå±€onesudoæœ‰å¤šæ¬¡æœºä¼šï¼Œéœ€è¦ä¿ç•™ï¼Œæˆ‘ä»¬ä½¿ç”¨copy_sudo
 				int place_length = GetBlankPlace(place, diffcult, low, high);
-				int real_diffcult = GetDiffcult(place, place_length);   //Ó¦¸ÃµÈÓÚdiffcult
-				setNull(copy_sudo, place, place_length);    //Éú³ÉµÃµ½Êı¶Àcopy_sudo
+				int real_diffcult = GetDiffcult(place, place_length);   //åº”è¯¥ç­‰äºdiffcult
+				setNull(copy_sudo, place, place_length);    //ç”Ÿæˆå¾—åˆ°æ•°ç‹¬copy_sudo
 				if (oneSolution)
 				{
 					list<int**> sudo_list;
 					GetAnswer(copy_sudo, size, &sudo_list);
-					if (sudo_list.size() == 0) {  //Êı¶ÀÎŞ½â
-						cout << "Éú³ÉµÄÊı¶ÀÎŞ½â" << endl;
+					if (sudo_list.size() == 0) {  //æ•°ç‹¬æ— è§£
+						cout << "ç”Ÿæˆçš„æ•°ç‹¬æ— è§£" << endl;
 						break;
 					}
-					if (sudo_list.size() != 1) {  //¶à½â(2)
-						cout << "Éú³ÉµÄÊı¶À¶à½â" << endl;
+					if (sudo_list.size() != 1) {  //å¤šè§£(2)
+						cout << "ç”Ÿæˆçš„æ•°ç‹¬å¤šè§£" << endl;
 						break;
 					}
 					num_now++;
@@ -66,11 +66,10 @@ void Generate(int num, bool oneSolution, int diffcult, int low, int high) {
 	output_game(valid_sudo_list);
 	DeleteMemory(valid_sudo_list);
 	DeleteMemory(onesudo);
-	DeleteMemory(copy_sudo);
 }
 
 void ShuffleArray(int* array, int size) {
-	srand(time(NULL)); // ³õÊ¼»¯Ëæ»úÊıÖÖ×Ó
+	srand(time(NULL)); // åˆå§‹åŒ–éšæœºæ•°ç§å­
 
 	for (int i = size - 1; i > 0; i--) {
 		int j = rand() % (i + 1);
@@ -78,7 +77,7 @@ void ShuffleArray(int* array, int size) {
 	}
 }
 
-// ÔÚ0-80Ö®¼äËæ»úÈ¡n¸öÊı£¬·ÅÈëplace
+// åœ¨0-80ä¹‹é—´éšæœºå–nä¸ªæ•°ï¼Œæ”¾å…¥place
 void GetRandomNumbers(int* place, int n) {
 	int numbers[81];
 	for (int i = 0; i < 81; i++) {
@@ -100,11 +99,11 @@ int getRandomNumber(int low, int high) {
 }
 
 int GetBlankPlace(int* place, int diffcult, int low, int high) {
-	//´ÓÄÑ¶ÈºÍÍÚ¿ÕÏŞÖÆ»ñµÃÍÚ¿ÕµÄÎ»ÖÃ
-	//·µ»ØÖµÊÇplaceµÄ³¤¶È
-	//placeÊäÈëÒ»¸öÖ¸Õë
-	//ÓÃËæ»úÉú³ÉµÃµ½Ò»¸öplaceÊı×é£¬ÔÙÅĞ¶ÏÊÇ·ñ·ûºÏÄÑ¶È
-	//placeÊÇÒ»¸öÒ»Î¬Êı×é£¬ĞÎÈç0£¬2£¬3±íÊ¾ÔÚ0£¬2£¬3Î»ÖÃÍÚ¿Õ£¬¼ÆËãµÃµ½ÔÚ¶şÎ¬Êı×éÖĞµÄÎ»ÖÃ
+	//ä»éš¾åº¦å’ŒæŒ–ç©ºé™åˆ¶è·å¾—æŒ–ç©ºçš„ä½ç½®
+	//è¿”å›å€¼æ˜¯placeçš„é•¿åº¦
+	//placeè¾“å…¥ä¸€ä¸ªæŒ‡é’ˆ
+	//ç”¨éšæœºç”Ÿæˆå¾—åˆ°ä¸€ä¸ªplaceæ•°ç»„ï¼Œå†åˆ¤æ–­æ˜¯å¦ç¬¦åˆéš¾åº¦
+	//placeæ˜¯ä¸€ä¸ªä¸€ç»´æ•°ç»„ï¼Œå½¢å¦‚0ï¼Œ2ï¼Œ3è¡¨ç¤ºåœ¨0ï¼Œ2ï¼Œ3ä½ç½®æŒ–ç©ºï¼Œè®¡ç®—å¾—åˆ°åœ¨äºŒç»´æ•°ç»„ä¸­çš„ä½ç½®
 	int randomNumber;
 	if (diffcult == 0){
 		randomNumber = getRandomNumber(low, high);
@@ -134,7 +133,7 @@ int GetDiffcult(int* place, int place_length) {
 	return ceil(3 * (rate * numdiff + (1 - rate) * freediff));
 }
 
-//»ñµÃÒòÍÚ¿ÕÊıµÃµ½µÄÄÑ¶È
+//è·å¾—å› æŒ–ç©ºæ•°å¾—åˆ°çš„éš¾åº¦
 float GetNumDiff(int length) {
 	if (length <= low_limit)
 		length = low_limit + 1;
@@ -144,9 +143,9 @@ float GetNumDiff(int length) {
 }
 
 
-//ÊäÈë¶şÎ¬£¬ÒòÎªÕâÑù¸ü·½±ã
-//»ñµÃÒò×ÔÓÉ¶ÈµÃµ½µÄÄÑ¶È
-//¿ÉÓÅ»¯£¬´Ó¿éµÄÎ¬¶È,Ã¿¸ö¿é»ñµÃ¿éÖĞµÄ¿Õ°×ÊıÓëÏà½»µÄĞĞÁĞµÄ¿Õ°×Êı
+//è¾“å…¥äºŒç»´ï¼Œå› ä¸ºè¿™æ ·æ›´æ–¹ä¾¿
+//è·å¾—å› è‡ªç”±åº¦å¾—åˆ°çš„éš¾åº¦
+//å¯ä¼˜åŒ–ï¼Œä»å—çš„ç»´åº¦,æ¯ä¸ªå—è·å¾—å—ä¸­çš„ç©ºç™½æ•°ä¸ç›¸äº¤çš„è¡Œåˆ—çš„ç©ºç™½æ•°
 int GetFree(int** place, int x, int y) {
 	if (place[x][y])
 		return 0;
